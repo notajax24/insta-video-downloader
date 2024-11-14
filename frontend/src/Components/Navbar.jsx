@@ -1,6 +1,14 @@
 // src/components/Navbar.jsx
 import React, { useState } from "react";
+import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -9,18 +17,21 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-dark-blue text-white p-4 w-full">
+    <nav className="bg-gray-900 text-white p-4 w-full fixed top-0">
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex items-center space-x-2">
           <img
-            src="https://via.placeholder.com/40" // Placeholder logo image
+            src={logo} // Placeholder logo image
             alt="Logo"
-            className="w-10 h-10 rounded-full"
+            className="w-20 h-20 rounded-full"
           />
-          <span className="text-2xl font-semibold font-poppins">
-            InstaDownload
-          </span>
+          <div className="flex items-center justify-evenly space-x-4">
+            <div className="text-white text-2xl font-semibold">
+              <span>SaveMy</span>
+              <span className="text-blue-500">Reels</span>
+            </div>
+          </div>
         </div>
 
         {/* Menu (Responsive) */}
@@ -28,11 +39,16 @@ const Navbar = () => {
           <Link to="/" className="hover:text-blue-500">
             Home
           </Link>
-          <Link to="/about" className="hover:text-blue-500">
+          <Link to="/about-us" className="hover:text-blue-500">
             About Us
           </Link>
-          <Link to="/login" className="hover:text-blue-500">
-            Login
+          <Link className="hover:text-blue-500">
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </Link>
         </div>
 
@@ -62,15 +78,20 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-dark-blue text-white p-4 space-y-4">
+        <div className="md:hidden bg-dark-blue text-white p-4 space-y-4 bg-transparent drop-shadow-lg ">
           <Link to="/" className="block hover:text-blue-500">
             Home
           </Link>
           <Link to="/about" className="block hover:text-blue-500">
             About Us
           </Link>
-          <Link to="/login" className="block hover:text-blue-500">
-            Login
+          <Link className="block hover:text-blue-500">
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </Link>
         </div>
       )}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AppNav from "./AppNav";
 import { FaDownload } from "react-icons/fa";
+import Instruction from "./Instruction";
 
 const Home = () => {
   const [url, setUrl] = useState("");
@@ -72,12 +73,13 @@ const Home = () => {
   return (
     <>
       <AppNav />
-      <div className="min-h-screen w-full bg-dark-blue text-white flex flex-col items-center pt-20">
-        <div className="min-h-auto min-w-[1000px] max-w-sm px-4 py-6 bg-black rounded-lg shadow-lg">
+      <div className="min-h -screen md:w-full bg-dark-blue text-white flex flex-col items-center pt-20 ">
+        <div className="min-h-auto md:min-w-[1000px] sm:w-[200px] max-w-sm px-4 py-6 bg-black rounded-lg shadow-lg">
           <div className="flex items-center space-x-2">
             <input
               type="text"
               value={url}
+              required
               onChange={(e) => setUrl(e.target.value)}
               placeholder="Paste Instagram URL"
               className="w-full p-3 bg-dark-blue text-black rounded-lg focus:outline-none"
@@ -89,12 +91,14 @@ const Home = () => {
               Paste
             </button>
           </div>
+
           <button
             onClick={handleDownload}
             className="w-full mt-4 bg-blue-500 p-3 rounded-lg text-white font-bold focus:outline-none"
           >
             Download
           </button>
+
           {loading && (
             <div className="flex-row justify-center items-center min-h-auto pt-3">
               <h3 className=" flex justify-center items-center text-m">
@@ -134,6 +138,9 @@ const Home = () => {
               </div>
             </div>
           )}
+        </div>
+        <div className="pt-20">
+          <Instruction />
         </div>
       </div>
     </>
