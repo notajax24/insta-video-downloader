@@ -41,7 +41,7 @@ const getInstagramGraphqlData = async (url) => {
 
   try {
     const response = await fetch(graphqlUrl, {
-      cors: ["http://localhost:3000", "http://savemyreeels.vercel.app"],
+      cors: ["http://localhost:3000", "https://savemyreeels.vercel.app"],
       method: "POST",
       headers: {
         "User-Agent":
