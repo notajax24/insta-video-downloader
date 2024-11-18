@@ -42,7 +42,6 @@ const getInstagramGraphqlData = async (url) => {
     const response = await fetch(graphqlUrl, {
       method: "POST",
       headers: {
-        origin: "http://localhost:5173",
         "User-Agent":
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
         "Content-Type": "application/x-www-form-urlencoded",
@@ -84,8 +83,9 @@ const getInstagramGraphqlData = async (url) => {
     fs.writeFileSync(videoPath, videoBuffer);
 
     // Return the path or download URL
+    console.log(`Video saved to ${videoPath}`);
     return {
-      videoUrl: `http://savemyreels.vercel.app:${PORT}/downloads/${videoFileName}`,
+      videoUrl: `https://insta-video-downloader-backend.vercel.app:${PORT}/downloads/${videoFileName}`,
       thumbnail: items.thumbnail_src,
     };
 
