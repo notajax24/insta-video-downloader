@@ -175,7 +175,9 @@ const Home = () => {
     setLoading(true); // Start loading
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/download?url=${encodeURIComponent(url)}`
+        `http://savemyreels.vercel.app:5000/download?url=${encodeURIComponent(
+          url
+        )}`
       );
 
       // Check if videoUrl and thumbnail are present in the response
