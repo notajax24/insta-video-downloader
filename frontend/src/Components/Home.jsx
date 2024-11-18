@@ -15,7 +15,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false); // Track loading state
   const [progress, setProgress] = useState(0);
 
-  const BACKEND_URL = "https://insta-video-downloader-backend.vercel.app";
+  const BACKEND_URL = "http://localhost:5000";
 
   // Function to handle paste button click
   const pasteFromClipboard = async () => {
@@ -35,14 +35,10 @@ const Home = () => {
         `${BACKEND_URL}/api/download?url=${encodeURIComponent(url)}`
       );
 
-      // Check if videoUrl and thumbnail are present in the response
-      const { videoUrl, thumbnail } = response.data;
+      console.log(response.data.videoUrl);
 
-      if (videoUrl && thumbnail) {
-        setVideoData({ videoUrl: videoUrl, thumbnail: thumbnail });
-      } else {
-        setError("No video URL or thumbnail found.");
-      }
+      setVideoData(response.data);
+      // Check if videoUrl and thumbnail are present in the response
     } catch (err) {
       setError("Failed to fetch video. Please check the URL.");
       console.error("Error fetching video:", err);
