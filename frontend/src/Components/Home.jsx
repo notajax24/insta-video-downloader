@@ -36,7 +36,7 @@ const Home = () => {
         `${BACKEND_URL}/api/download?url=${encodeURIComponent(url)}`
       );
 
-      setNewVideoUrl(response.data.videoUrl);
+      setVideoData(response.data.videoUrl);
       console.log(response.data.videoUrl);
       setVideoData(response.data);
       // Check if videoUrl and thumbnail are present in the response
