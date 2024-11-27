@@ -4,6 +4,7 @@
     {
       "src": "api/server.cjs",
       "use": "@vercel/node"
-    }
+    },
+    { "src": "hello.js", "use": "@vercel/node" }
   ]
 }
